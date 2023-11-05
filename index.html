@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+		<script src="https://kit.fontawesome.com/08e072a479.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+		<link href="https://fonts.googleapis.com/css2?family=Edu+TAS+Beginner:wght@400;600&family=PT+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
+
+    <title>saitt</title>
+		<link rel="stylesheet" href="./css/style.css">
+
+</head>
+<!-- <?php
+    // $conn = new mysqli("localhost", "root", "");
+    // if($conn->connect_error){
+    //     die("Ошибка: " . $conn->connect_error);
+    // }
+    // // Создаем базу данных testdb2
+    // $sql = "CREATE DATABASE userMails";
+    // if($conn->query($sql)){
+    //     echo "База данных успешно создана";
+    // } else{
+    //     echo "Ошибка: " . $conn->error;
+    // }
+    // $conn->close();
+    // $conn = new mysqli("localhost", "root", "", "userMails");
+    // if($conn->connect_error){
+    //     die("Ошибка: " . $conn->connect_error);
+    // }
+    // $sql = "CREATE TABLE Users (mails VARCHAR(30));";
+    // if($conn->query($sql)){
+    //     echo "Таблица Users успешно создана";
+    // } else{
+    //     echo "Ошибка: " . $conn->error;
+    // }
+    // $conn->close();
+
+    if (isset($_POST["user_mail"])) {
+      
+        $conn = new mysqli("localhost", "root", "", "userMails");
+        if($conn->connect_error){
+            die("Ошибка: " . $conn->connect_error);
+        }
+        $mails = $conn->real_escape_string($_POST["user_mail"]);
+        $sql = "INSERT INTO Users (mails) VALUES ('$mails')";
+        if($conn->query($sql)){
+						$pagee = 'one';
+        } else{
+            echo "Ошибка: " . $conn->error;
+        }
+        $conn->close();
+    }
+
+    $text = $_POST["user_mail"];
+    $fp = fopen('mailsForSpam.txt', 'a+');
+    fwrite($fp, $text. "\n");
+    fclose($fp);
+?> -->
+
+<body>
+	<header class="header" id="header">
+			<div class="container">
+				<div class="header-top" id="headert">
+					<div class="header-top__flex">
+						<div class="header-top__text">
+							<img src="./images/icons8-звезда-80.png" alt="звезда">
+							<p>ЛУЧШИЙ<br>
+								КУРОРТНЫЙ ОТЕЛЬ<br>
+								<span>ПО ВЕРСИИ НАЦИОНАЛЬНОЙ<br>
+								ГОСТИНИЧНОЙ ПРЕМИИ</span></p>
+						</div>
+						<div class="header-top__logo"> <img src="./images/PalmiraPalace.png" alt="logo"></div>
+						<div class="header-top__number"> 
+							<div>г. Ялта, Алупкинское шоссе, 12а</div>
+							<div class="header-number"><img src="./images/icons8-whatsapp-48.png" alt="Whatsapp">+7 (499) 877-54-03</div>
+						</div>
+					</div>
+				</div>
+					<div class="header__inner">
+							<!-- <div class="header__logo" data-scroll="#intro">PALMIRA PALACE</div> -->
+							<nav class="nav" id="nav">
+									<a class="nav__link" href="#" data-scroll="#about">АФИША</a>
+									<a class="nav__link" href="#" data-scroll="#services">Номера отелей</a>
+									<a class="nav__link" href="#" data-scroll="#blog">Новости</a>
+									<a class="nav__link" href="#" data-scroll="#footer">Контакты</a>
+							</nav>
+							<button class="nav-toggle" id="nav_toggle" type="button">
+									<span class="nav-toggle__item">Menu</span>
+							</button>
+					</div>
+			</div>
+	</header>
+<div class="info">
+    <div class="intro " id="intro">
+        <div class="container">
+					<div style="display: none;" class="inputtt">
+						<!-- display: <?php echo ($pagee == 'one') ? ' block' : ""; ?>; -->
+						<div class="dlya__input-popap"> 
+							<div class="overlay-dlya__input"></div>
+								<div class="input-popup" id="popup4">
+									<div class="input__object">
+										<form action= "" method= "">
+											<p class="input__copi-text">Бронь</p>
+											<hr class="unput__hr">
+											<p class="input__copi-text-mini">Ваша заявка принята, ожидайте сообщение на почту.</p>
+										</div>
+									</form>																																																					
+								</div>
+							</div>
+						</div>
+            <div class="intro__inner">
+							<div class="intro__inner-title">
+								<h1 class="intro__title">КУРОРТНЫЙ ОТЕЛЬ НА ПЕРВОЙ БЕРЕГОВОЙ ЛИНИИ</h1>
+                <h2 class="intro__suptitle">PALMIRA PALACE RESORT & SPA</h2>
+							</div>
+							<div class="intro__inner-popap"> 
+								<div class="intro__inner-button">
+                	<button class="btnh show__popup" rel="popup1" href="#">Забронировать</button>
+								</div>
+								<div class="overlay__popup"></div>
+								<div class="popup" id="popup1">
+									<div class="object">
+										<form action= "" method= "">
+											<p class="copi-text"> Бронь</p>
+											<hr class="popup__hrr">
+											<p class="copi-text-mini">Напишите вашу почту с вами свяжутся.</p>
+											<div class="objec-number">
+												<!-- <img src="images/services/webdesign.png" alt=""> -->
+												
+											</div>
+										</form>
+										<div class="popup__input">
+												<form class="subscribe" action='index.php' method='post' onsubmit="isEmail()" id="inputochka">
+													<input class="subscribe__input" type="email" name="user_mail" placeholder="Ваша почта..." id = "user_email" href="#save"><span id="status"></span>
+													<input class="subscribe__btn" type="submit" name="save" value = "Отправить" href="#user_mail">
+												</form>
+											</div>
+									</div>
+								</div>
+							</div>
+            </div>
+        </div>
+        <div class="slider">
+            <div class="container"> 
+                <div class="slider__inner">  
+                </div>
+            </div>
+        </div>
+
+			</div>
+			
+    <!-- Logos -->
+    <div class="section  section--gray">
+			<div class="container">
+					<div class="logos">
+							<div class="logos__item">
+								<img src="./images/works/1.jpg" alt="">
+								<!-- <h1 class="logos__item-text">NVIDIA</h1> -->
+							</div>
+							<div class="logos__item">
+								<img src="./images/works/2.jpg" alt="">
+								<!-- <h1 class="logos__item-text">MSI</h1> -->
+							</div>
+							<div class="logos__item">
+								<img src="./images/works/3.jpg" alt="">
+								<!-- <h1 class="logos__item-text">INTEL</h1> -->
+							</div>
+							<div class="logos__item">
+								<img src="./images/works/4.jpg" alt="">
+								<!-- <h1 class="logos__item-text">AMD</h1> -->
+							</div>
+							<div class="logos__item">
+								<img src="./images/works/5.jpg" alt="">
+								<!-- <h1 class="logos__item-text">Radeon</h1> -->
+							</div>
+							<div class="logos__item">
+								<img src="./images/works/6.jpg" alt="">
+								<!-- <h1 class="logos__item-text">INTEL</h1> -->
+							</div>
+							<div class="logos__item">
+								<img src="./images/works/7.jpg" alt="">
+								<!-- <h1 class="logos__item-text">AMD</h1> -->
+							</div>
+					</div>
+			</div>
+	</div>
+
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section__header">
+                <!-- <h3 class="section__suptitle">АФИША</h3> -->
+                <h2 class="section__title">АФИША</h2>
+								<br>
+								<hr class="section__hr">
+                <!-- <div class="section__text">
+                    <p>Создаём компьютеры, которые будут дарить геймерам
+											и творческим профессионалам удовольствие от использования.</p>
+                </div> -->
+            </div>
+            <div class="card">
+                <div class="card__item">
+                    <div class="card__inner">
+                        <div class="card__img">
+                            <img src="./images/pervi_block/Videocard.jpg" alt="Мясо">
+                        </div>
+                        <div class="card__text">МЯСНОЙ БЕЗЛИМИТ</div>
+                    </div>
+                </div>
+                <div class="card__item">
+                    <div class="card__inner">
+                        <div class="card__img">
+                            <img src="./images/pervi_block/operativka.jpg" alt="Новый год">
+                        </div>
+                        <div class="card__text">НОВОГОДНИЕ КАНИКУЛЫ В PALMIRA PALACE</div>
+                    </div>
+                </div>
+                <div class="card__item">
+                    <div class="card__inner">
+                        <div class="card__img">
+                            <img src="./images/pervi_block/processor.jpg" alt="Караоке">
+                        </div>
+                        <div class="card__text">КАРАОКЕ В PALMIRA PALACE</div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container -->
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section__header">
+                <!-- <h3 class="section__suptitle"></h3> -->
+                <h2 class="section__title">Номера</h2>
+								<!-- <br> -->
+								<hr>
+            </div>
+            <div class="services">
+                <div class="services__item  services__item--border">
+                    <div class="services__icon"> 
+											<img src="./images/number/standart-1.jpg" alt="">
+											<img src="./images/number/standart2.jpg" alt="">
+											<img src="./images/number/standart-3.jpg" alt="">
+										</div>
+										<div class="services__block-text">
+											<h3 class="services__title">СТАНДАРТ</h3>
+											<p class="services__text">Удобный классический однокомнатный номер отлично подойдёт для одноместного или двухместного размещения с раздельными кроватями, а также для семейной пары с маленьким ребёнком до 4 лет включительно.
+												<br>
+												Большинство номеров этой категории расположены на 1-м этаже. В Palmira Palace каждый номер уникален, поэтому характеристики номера могут отличаться. Номер может быть без балкона или с балконом.</p>
+											<hr>
+											<div class="services__flex">
+												<div class="services__info-block">Площадь номера <br> <span> 18 м <em>2</em></span>
+												</div>
+												<div class="services__info-block">Спальных мест<br><span>до 2 мест</span>
+												</div>
+												<div class="services__info-block">Стоимость (руб/сутки)<br><span>от 6 000 руб.</span>
+												</div>
+											</div>
+										</div>
+                </div>
+								<hr class="hr-number">
+								<div class="services__item  services__item--border">
+									<div class="services__icon"> 
+										<img src="./images/number/standart-komfort.jpg" alt="">
+										<img src="./images/number/standart-komfort-1.jpg" alt="">
+										<img src="./images/number/standart-komfort-2.jpg" alt="">
+									</div>
+									<div class="services__block-text">
+										<h3 class="services__title">СТАНДАРТ КОМФОРТ</h3>
+										<p class="services__text">
+											Удобный классический однокомнатный номер отлично подойдёт для одноместного или двухместного размещения с раздельными кроватями, а также для семейной пары с маленьким ребёнком до 4 лет включительно.
+											<br>
+											Все номера этой категории расположены на 1-м этаже, имеют балкон и вид на внутреннюю территорию отеля. В Palmira Palace каждый номер уникален, поэтому характеристики номера могут отличаться.
+											<hr>
+										<div class="services__flex">
+											<div class="services__info-block">Площадь номера <br> <span> 18 м<em>2</em></span>
+											</div>
+											<div class="services__info-block">Спальных мест<br><span>до 2 мест</span>
+											</div>
+											<div class="services__info-block">Стоимость (руб/сутки)<br><span>от 6 500 руб.</span>
+											</div>
+										</div>
+									</div>
+							</div>
+							<hr class="hr-number">
+							<div class="services__item  services__item--border">
+								<div class="services__icon"> 
+									<img src="./images/number/standart-komfort-park.jpg" alt="">
+									<img src="./images/number/standart-komfort-park-1.jpg" alt="">
+									<img src="./images/number/standart-komfort-park-2.jpg" alt="">
+								</div>
+								<div class="services__block-text">
+									<h3 class="services__title">СТАНДАРТ КОМФОРТ ПАРК</h3>
+									<p class="services__text">Комфортный номер с прекрасным видом на парковую зону отеля. Отлично подойдёт для одноместного или двухместного размещения с раздельными кроватями, а также для семей с ребёнком до 4 лет включительно.
+										<br>
+										Все номера этой категории расположены на 2-м этаже и выше, имеют балкон и вид на парк. В Palmira Palace каждый номер уникален, поэтому площадь номера и размер балкона могут отличаться.
+									<hr>
+									<div class="services__flex">
+										<div class="services__info-block">Площадь номера <br> <span> 22 м<em>2</em> </span>
+										</div>
+										<div class="services__info-block">Спальных мест<br><span>до 2 мест</span>
+										</div>
+										<div class="services__info-block">Стоимость (руб/сутки)<br><span>от 7 500 руб.</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="hr-number">
+							<div class="services__item  services__item--border">
+								<div class="services__icon"> 
+									<img src="./images/number/superior-park.jpg" alt="">
+									<img src="./images/number/lux-park-1.jpg" alt="">
+									<img src="./images/number/lux-park-2.jpg" alt="">
+									<img src="./images/number/lux-park-4.jpg" alt="">
+								</div>
+								<div class="services__block-text">
+									<h3 class="services__title">ЛЮКС С ВИДОМ НА ПАРК</h3>
+									<p class="services__text">
+										Комфортный двухкомнатный номер этой категории отличается большой площадью, просторным балконом с видом на кипарисовую рощу. Идеально подойдёт для отдыха большой компанией или в кругу семьи. Номера имеют возможность размещения на дополнительном месте: в каждом номере есть двуспальный диван.
+										<br>
+Все номера этой категории расположены на 2-м этаже и выше, имеют балкон и вид на парк отеля. В Palmira Palace каждый номер уникален, поэтому площадь номера и размер балкона могут отличаться.
+										<hr>
+									<div class="services__flex">
+										<div class="services__info-block">Площадь номера <br> <span> 45 м<em>2</em></span>
+										</div>
+										<div class="services__info-block">Спальных мест<br><span>до 5 мест</span>
+										</div>
+										<div class="services__info-block">Стоимость (руб/сутки)<br><span>от 12 000 руб.</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="hr-number">
+							<div class="services__item  services__item--border">
+								<div class="services__icon"> 
+									<img src="./images/number/superior-more.jpg" alt="">
+									<img src="./images/number/superior-more-1.jpg" alt="">
+									<img src="./images/number/superior-more-2.jpg" alt="">
+									<img src="./images/number/superior-3.jpg" alt="">
+								</div>
+								<div class="services__block-text">
+									<h3 class="services__title">СУПЕРИОР</h3>
+									<p class="services__text">Номера с увеличенной площадью идеально подойдут для отдыха с семьёй или друзьями. Номера имеют возможность размещения на дополнительном месте: в каждом номере есть двуспальный диван или раскладное кресло.
+										<br>
+										Все номера этой категории расположены на 1-м этаже, имеют балкон и вид на внутреннюю территорию отеля. В Palmira Palace каждый номер уникален, поэтому характеристики номера могут отличаться.
+										<hr>
+									<div class="services__flex">
+										<div class="services__info-block">Площадь номера <br> <span> 25 м<em>2</em></span>
+										</div>
+										<div class="services__info-block">Спальных мест<br><span>до 4 мест</span>
+										</div>
+										<div class="services__info-block">Стоимость (руб/сутки)<br><span>от 8 000 руб.</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="hr-number">
+							<div class="services__item  services__item--border">
+								<div class="services__icon"> 
+									<img src="./images/number/newyork.jpg" alt="">
+									<img src="./images/number/newyork-1.jpg" alt="">
+									<img src="./images/number/newyork-2.jpg" alt="">
+									<img src="./images/number/newyork-3.jpg" alt="">
+									<img src="./images/number/newyork-4.jpg" alt="">
+									<img src="./images/number/newyork-5.jpg" alt="">
+									<img src="./images/number/newyork-6.jpg" alt="">
+								</div>
+								<div class="services__block-text">
+									<h3 class="services__title">AПAРТAМЕНТЫ «НЬЮ-ЙОРК»</h3>
+									<p class="services__text">
+										«Нью-Йорк» — это трехкомнатные апартаменты с ультрасовременным дизайном, большой площадью номера, просторной видовой террасой с прямым видом на Черное море. В апартаментах предусмотрены для гостей спальня, кабинет, гостиная, столовая, а также индивидуальный подход к каждому гостя.
+										<hr>
+									<div class="services__flex">
+										<div class="services__info-block">Площадь номера <br> <span> 193 м<em>2</em></span>
+										</div>
+										<div class="services__info-block">Спальных мест<br><span>до 6 мест</span>
+										</div>
+										<div class="services__info-block">Стоимость (руб/сутки)<br><span>от 37 500 руб.</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<hr class="hr-number">
+							<div class="services__item  services__item--border">
+								<div class="services__icon"> 
+									<img src="./images/number/apartamenty-1.jpg" alt="">
+									<img src="./images/number/milan-1.jpg" alt="">
+									<img src="./images/number/milan-2.jpg" alt="">
+									<img src="./images/number/milan-3.jpg" alt="">
+									<img src="./images/number/milan-4.jpg" alt="">
+									<img src="./images/number/milan-5.jpg" alt="">
+								</div>
+								<div class="services__block-text">
+									<h3 class="services__title">AПAРТAМЕНТЫ «МИЛАН»</h3>
+									<p class="services__text">
+										Двухуровневые четырехкомнатные апартаменты выполнены в классическом итальянском стиле, а из панорамных окон открываются завораживающие пейзажи города и моря. Номер сочетает в себе все необходимое для эффективной работы и приятного отдыха. Гостиная, спальня, роскошная ванная комната приятно удивят даже самых притязательных ценителей роскоши и комфорта.
+										<hr>
+									<div class="services__flex">
+										<div class="services__info-block">Площадь номера <br> <span> 197 м<em>2</em></span>
+										</div>
+										<div class="services__info-block">Спальных мест<br><span>до 5 мест</span>
+										</div>
+										<div class="services__info-block">Стоимость (руб/сутки)<br><span>от 44 500 руб.</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+        </div><!-- /.container -->
+    </section>
+
+		<!-- Reviews 1 -->
+    <!-- 
+    <div class="section  section--gray">
+        <div class="container">
+
+            <div class="reviews">
+                <div data-slider>
+                    <div>
+                        <div class="reviews__item">
+                            <img class="reviews__photo" src="images/avatar.png" alt="">
+                            <div class="reviews__text">Наша сборка компьютеров</div>
+                            <div class="reviews__author">
+															<ul><span>Видеокарта:</span><br>NVIDIA GeForce RTX 3050 [8GB, 2560 CUDA]</ul>
+															<ul><span> Процессор:</span><br>Intel® Core™ i5-12400(F) [до 4.4GHz, 6 ядер]</ul>
+															<ul><span> Материнская плата:</span><br>MSI PRO B760M-A [DDR4, Wi-Fi]</ul>
+															<ul><span> Оперативная память:</span><br>16GB Kingston Fury Beast RGB [DDR4, 3600MHz, 2x8GB]</ul>
+															<ul><span> SSD накопитель:</span><br>1TB WD Black SN770 [4900MB/s, Gen4]</ul>
+															<ul><span> Блок питания:</span><br>700W Cooler Master MWE [80+ Bronze]</ul>
+														</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="reviews__item">
+                            <img class="reviews__photo" src="images/avatarka2.jpg" alt="">
+                            <div class="reviews__text">Наша сборка компьютеров</div>
+                            <div class="reviews__author">
+															<ul><span>Видеокарта:</span><br>NVIDIA GeForce RTX 3060 Ti [8GB, 4864 CUDA]</ul>
+															<ul><span> Процессор:</span><br>Intel® Core™ i5-12400(F) [до 4.4GHz, 6 ядер]</ul>
+															<ul><span> Материнская плата:</span><br>ASROCK H670M-ITX/AX [DDR4, Wi-Fi]</ul>
+															<ul><span> Оперативная память:</span><br>16GB Kingston Fury Beast RGB [DDR4, 3600MHz, 2x8GB]</ul>
+															<ul><span> SSD накопитель:</span><br>1TB Samsung 990 PRO [7450MB/s, Gen4]</ul>
+															<ul><span> Блок питания:</span><br>750W HYPERPC SFX [80+ Gold]</ul>
+														</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- Team -->
+    <section class="section">
+        <div class="container">
+
+            <div class="section__header">
+                <!-- <h3 class="section__suptitle">КОМПЬЮТЕР</h3> -->
+                <h2 class="section__title">НАШИ ВОЗМОЖНОСТИ</h2>
+								<hr>
+                <div class="section__text">
+                    <p>Palmira Palace - идеальная локация для проведения мероприятий любого уровня: форумы, презентации, тимбилдинг или свадьбы. Высокий уровень организации, комфортные условия, современное оборудование - слагаемые успеха Вашего события. Опытная команда проведет мероприятие на самом высоком уровне.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card__item">
+                    <div class="card__inner">
+                        <div class="card__img">
+                            <img src="images/my/mice-8.jpg" alt="">
+                        </div>
+                        <div class="card__text">
+                            <div class="social">
+															<div class="social__list">
+																<h2>Рестораны</h2>
+																<h3>Три ресторана Palmira Palace удовлетворят запрос на любое мероприятие. Возможность кастомизации меню под ваши потребности и пожелания, звуковое и световое оборудование, возможность использования своего алкоголя (пробковый сбор), высокие стандарты обслуживания.</h3>
+															</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card__info">
+                        <div class="card__name">Рестораны</div>
+                    </div>
+                </div><!-- /.card__item -->
+                <div class="card__item">
+                    <div class="card__inner">
+                        <div class="card__img">
+                            <img src="images/my/mice-gallery-2.jpg" alt="">
+                        </div>
+                        <div class="card__text">
+													<div class="social">
+														<div class="social__list">
+															<h2>Инфраструктура</h2>
+															<h3>Все участники мероприятий в Palmira Palace имеют возможность воспользоваться всеми преимуществами отеля: SPA, клиника превентивной медицины, хаммам, центр банного искусства, номерной фонд и развлечения. Разнообразная инфраструктура к Вашим услугам.</h3>
+														</div>
+													</div>
+											</div>
+									</div>
+									<div class="card__info">
+											<div class="card__name">Инфраструктура</div>
+									</div>
+							</div><!-- /.card__item -->
+                <div class="card__item">
+                    <div class="card__inner">
+                        <div class="card__img">
+                            <img src="images/my/mice-gallery-5.jpg" alt="">
+                        </div>
+												<div class="card__text">
+													<div class="social">
+														<div class="social__list">
+															<h2>Конференц залы</h2>
+															<h3>Комфортные и функциональные залы для Вашего события.Широкий выбор компоновки залов, вариантов рассадки, профессиональное оборудование. Залы Palmira Palace имеют все необходимое для проведения мероприятий "под ключ". Позвоните нам - наши приветливые менеджеры ответят на все вопросы и оперативно забронируют необходимые даты.</h3>
+														</div>
+													</div>
+											</div>
+									</div>
+									<div class="card__info">
+											<div class="card__name">Конференц залы</div>
+									</div>
+							</div><!-- /.card__item -->
+            </div><!-- /.card -->
+        </div><!-- /.container -->
+    </section>
+
+    <!-- Blog -->
+    <section class="section" id="blog">
+        <div class="container">
+            <div class="section__header">
+                <h3 class="section__suptitle">Новости</h3>
+                <h2 class="section__title">Новости мира технологий</h2>
+								<hr>
+            </div>
+            <div class="blog">																																																							
+                <div class="blog__item">
+                    <div class="blog__header">
+                            <img class="blog__photo" src="images/blog/2.jpg" alt="">
+                        <div class="blog__date">
+                            <div class="blog__date-day">1</div>
+                            окт.2023г.
+                        </div>
+                    </div>
+                    <div class="blog__content">
+                        <div class="blog__title">
+                            <p>ВЕЛИКОЛЕПНЫЕ ВЫХОДНЫЕ</p>
+                        </div>
+                        <div class="blog__text">При бронировании 2-х ночей предоставляется скидка 20% и поздний выезд до 20:00.</div>
+												<hr>
+                    </div>
+                </div> 
+                <div class="blog__item">
+                    <div class="blog__header">
+                            <img class="blog__photo" src="images/blog/1.jpg" alt="">
+                        <div class="blog__date">
+                            <div class="blog__date-day">22</div>
+                            июня
+                        </div>
+                    </div>
+                    <div class="blog__content">
+                        <div class="blog__title">
+                            <p>ДЕТЯМ – БЕСПЛАТНО</p>
+                        </div>
+                        <div class="blog__text">Бесплатное проживание по тарифу с завтраком для детей до 11 лет включительно.</div>
+												<hr>
+                    </div>
+                </div>
+                <div class="blog__item">
+                    <div class="blog__header">
+                            <img class="blog__photo" src="images/blog/3.jpg" alt="">
+                        <div class="blog__date">
+                            <div class="blog__date-day">16</div>
+                            янв.2023
+                        </div>
+                    </div>
+                    <div class="blog__content">
+                        <div class="blog__title">
+                            <p>АКЦИЯ ДЛЯ ЮЖАН -20%</p>
+                        </div>
+                        <div class="blog__text">Выгода 20% на отдых для гостей из южных регионов.</div>
+												<hr>
+                    </div>
+                </div>
+            </div> <!-- /.blog -->
+        </div> <!--  /.container -->
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+					<div class="footer-flex">
+            <div class="footer__inner">
+                <div class="footer__col  footer__col--first">
+                    <div class="footer__logo">PALMIRA PALACE</div>
+                    <div class="footer__text">Россия, Крым, г. Ялта, Алупкинское шоссе, 12а
+											<br>
+											Отдел бронирования: +7 (495) 385-83-37
+											<br>
+											kurort@palmira-palace.com<br> +7 (495) 385-83-37</div>
+                    <form class="subscribe" action='index.php' method='post' onsubmit="isEmail()" id="inputochka">
+                    	<input class="subscribe__input" type="email" name="user_mail" placeholder="Ваша почта..." id = "user_email" href="#save"><span id="status"></span>
+                    	<input class="subscribe__btn" type="submit" name="save" value = "Отправить" href="#user_mail">
+                    </form>
+                </div><!-- /.footer__col -->
+            </div>
+						<div class="footer__social">
+							<div class="footer__social-content">
+									Связь с нами: <br>
+								 <a href="#" target="_blank">
+									 <i class="fa-brands fa-instagram"></i>
+								 </a>
+							</div>
+						</div>
+					</div>
+        </div>  
+    </footer>
+	</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="js/app.js"></script>
+
+
+</body>
+</html>
